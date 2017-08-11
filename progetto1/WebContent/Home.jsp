@@ -10,10 +10,10 @@
 <script src="js/jquery.js" ></script>
 </head>
 
-<!--  <script>
+ <script>
 $(document).ready(function(){
     $("#email").blur(function(){
-        var uname = $(this).val();
+        var email = $(this).val();
              $.ajax({
                 type: "POST",
                 url: "AjaxController",
@@ -21,14 +21,14 @@ $(document).ready(function(){
                 success: function(msg){
                     $("#result1").ajaxComplete(function(event, request, settings) {                    
                         $("#result1").html(msg);
-                        $('#result1').append(error)
+                        $('#result1').append(error);
                     });
                 }
             }); 
         });
  });
 
-</script>  -->
+</script>  
 
 
  <jsp:getProperty property="pass" name="UtenteBean"/>
@@ -38,7 +38,10 @@ $(document).ready(function(){
 <input type="text" id="email" name="email"> 
 <input type="submit" value="test!" id="bttHello" > 
 
+
 <p id="result1"> </p>
+
+
 
 </form>
 
