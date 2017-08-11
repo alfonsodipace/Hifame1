@@ -33,23 +33,40 @@ public class AjaxController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String email = request.getParameter("email").toString();
-		String error;
-		UtenteBean bn = new UtenteBean();
-		UtenteBeanDao dao = new UtenteBeanDao();
+		
 		PrintWriter out = response.getWriter();
+		
+		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String email = request.getParameter("email");
+		String error = null;
+		//UtenteBean bn = new UtenteBean();
+		UtenteBeanDao dao = new UtenteBeanDao();
+		
+		System.out.println("sono dentro");
 		System.out.println(email);
-		log("email");
-		try {
-			dao.doRetrieveByKey(email);
-			if(email.equals(bn.getEmail()))
-			error="<font color=green><b>"+email+"</b> is avaliable";
-		} catch (SQLException e) {
-			error="<font color=red><b>"+email+"</b> is already in use</font>";
-			e.printStackTrace();
-		}
-
+		
+		
+			UtenteBean bn1;
+			try {
+				bn1 = dao.doRetrieveByKey(email);
+				
+				if(email.equals(bn1.getEmail()))
+				{
+					error="<font color=red><b>"+email+"</b> is already in use</font>";
+				}
+				else{
+				error="<font color=green><b>"+email+"</b> is avaliable";
+		
+			}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		System.out.println(error);
+		request.setAttribute("error", error);
+		request.getRequestDispatcher("Home.jsp").forward(request, response);
 	}
 
 	/**

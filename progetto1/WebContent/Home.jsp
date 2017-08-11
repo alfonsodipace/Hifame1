@@ -10,10 +10,17 @@
 <script src="js/jquery.js" ></script>
 </head>
 
+<<<<<<< HEAD
 <script>
 $(document).ready(function(){
     $("#email").blur(function(){
         var emais = $(this).val();
+=======
+ <script>
+$(document).ready(function(){
+    $("#email").blur(function(){
+        var email = $(this).val();
+>>>>>>> b08f4a0e05bcd75feafa7e161424f6edf15c95d9
              $.ajax({
                 type: "POST",
                 url: "AjaxController",
@@ -21,14 +28,18 @@ $(document).ready(function(){
                 success: function(msg){
                     $("#result1").ajaxComplete(function(event, request, settings) {                    
                         $("#result1").html(msg);
-                        $('#result1').append(error)
+                        $('#result1').append(error);
                     });
                 }
             }); 
         });
  });
 
+<<<<<<< HEAD
 </script>
+=======
+</script>  
+>>>>>>> b08f4a0e05bcd75feafa7e161424f6edf15c95d9
 
 
  <jsp:getProperty property="pass" name="UtenteBean"/>
@@ -38,7 +49,10 @@ $(document).ready(function(){
 <input type="text" id="email" name="email"> 
 <input type="submit" value="test!" id="bttHello" > 
 
+
 <p id="result1"> </p>
+
+
 
 </form>
 
