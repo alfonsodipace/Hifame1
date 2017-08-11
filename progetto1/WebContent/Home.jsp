@@ -7,33 +7,26 @@
 <title>Home</title>
  <jsp:useBean id="UtenteBean" class="bean.UtenteBean" scope="session"/>  
 
-<script src="js/jquery.js" ></script>
+<script src="js/jquery.js" ></script>  <!--  LIBRERIA JQUERY -->
 </head>
 
-
 <script>
-$(document).ready(function(){
-    $("#email").blur(function(){
-        var email = $(this).val();
-             $.ajax({
-                type: "POST",
-                url: "AjaxController",
-                data: "email="+ email,
-                success: function(msg){
-                    $("#result1").ajaxComplete(function(event, request, settings) {                    
-                        $("#result1").html(msg);
-                        $('#result1').append(error);
-                    });
-                }
-            }); 
-        });
- });
-</script>
+		$(document).ready(function(){  					// check username availability with ajax 
+              $("#email").blur(function(){
+                  var email = $(this).val();
+                       $.ajax({
+                          type: "GET",
+                          url: "AjaxController",
+                          data: "email="+ email,
+                          success: function(msg){  
+                                  $("#result1").append(msg);
+                          }
+                      }); 
+              });
+          });
+</script>   
 
-
-
-
- <jsp:getProperty property="pass" name="UtenteBean"/>
+ <jsp:getProperty property="pass" name="UtenteBean"/>       <!--  JUST FOR TEST -->
 
 <body>
 <form action="MainTest" method="get">

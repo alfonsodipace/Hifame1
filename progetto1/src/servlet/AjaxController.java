@@ -19,54 +19,49 @@ import bean.UtenteBeanDao;
 @WebServlet("/AjaxController")
 public class AjaxController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AjaxController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public AjaxController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//TEST
+
 		PrintWriter out = response.getWriter();
-		
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 		String email = request.getParameter("email");
-		String error = null;
-		//UtenteBean bn = new UtenteBean();
+
 		UtenteBeanDao dao = new UtenteBeanDao();
-		
-		System.out.println("sono dentro");
-		System.out.println(email);
-		
-		
-			UtenteBean bn1;
-			try {
-				bn1 = dao.doRetrieveByKey(email);
-				
-				if(email.equals(bn1.getEmail()))
-				{
-					error="<font color=red><b>"+email+"</b> is already in use</font>";
-				}
-				else{
-				error="<font color=green><b>"+email+"</b> is avaliable";
-		
+
+
+		UtenteBean bn1;
+		try {
+			bn1 = dao.doRetrieveByKey(email);
+
+			if(email.equals(bn1.getEmail()))
+			{
+				out.println(""+email+" is already in use");
 			}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			else{
+				out.println(""+email+" is avaiable");		
 			}
-			
-		System.out.println(error);
-		request.setAttribute("error", error);
-		request.getRequestDispatcher("Home.jsp").forward(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+
+
+
+		
+
 	}
 
 	/**
