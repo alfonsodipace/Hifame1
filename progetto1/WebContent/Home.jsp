@@ -10,10 +10,10 @@
 <script src="js/jquery.js" ></script>
 </head>
 
-<!--  <script>
+<script>
 $(document).ready(function(){
     $("#email").blur(function(){
-        var uname = $(this).val();
+        var emais = $(this).val();
              $.ajax({
                 type: "POST",
                 url: "AjaxController",
@@ -28,7 +28,7 @@ $(document).ready(function(){
         });
  });
 
-</script>  -->
+</script>
 
 
  <jsp:getProperty property="pass" name="UtenteBean"/>
