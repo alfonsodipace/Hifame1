@@ -33,7 +33,7 @@ public class AjaxController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		//TEST
 		PrintWriter out = response.getWriter();
 		
 		
