@@ -5,81 +5,74 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Registrazione</title>
+<script src="js/jquery.js"></script>  <!--  LIBRERIA JQUERY -->
+<script type="text/javascript" src="js/Validation.js"></script>
 </head>
+
 <body>
-
-<form>
-Email: <input type="text" id="emai"> <p id="emo"></p> </br>
-Password: <input type="password" id="pass"> <p id="pasw"> </p> </br>
-Nome <input type="text" id="nome"> <p fontcolor="red"  id="name"></p> </br>
-Cognome <input type="text" id="cognome"> <p id="surname"></p> </br>
-Indirizzo <input type="text" id="indirizzo"> </br>
-
-<input type="button" value="Invia" onclick="valida()">
-
-<script type="text/javascript">
+<!-- 
+<script>
 
 function valida()
 {
-	assenza();
-
+	CheckEmpty();
 }
 
-function assenza()
+function CheckEmpty()  
 {
-	if(document.getElementById("nome").value == "")
-	{
-		document.getElementById("name").innerHTML = "Nome vuoto";
+	if(document.getElementById("nome").value == "") {
+		document.getElementById("name").innerHTML = "*";
 	}
-	else document.getElementById("name").innerHTML = " ";
-	
-	if(document.getElementById("cognome").value == "")
-	{
-		document.getElementById("surname").innerHTML = "Cognome vuoto";
+	if(document.getElementById("cognome").value == "") {
+		document.getElementById("surname").innerHTML = "*";
 	}
-	else document.getElementById("surname").innerHTML = " ";
-	
-	 if(document.getElementById("pass").value=="")
-		{
-		document.getElementById("pasw").innerHTML = "Password vuota";
-		} 
-	 else if(document.getElementById("pass").value.length < 6)
-		{
-		console.log("Sono dentro");
-		
-		document.getElementById("pasw").innerHTML = "La password deve essere lunga almeno 6 caratteri";
-		}
-	 else document.getElementById("pasw").innerHTML = " ";
-			
-	
-	if(document.getElementById("emai").value == "")
-		{
-			document.getElementById("emo").innerHTML = "Email vuota";
-		}
+	if(document.getElementById("indirizzo").value == "") {
+		document.getElementById("address").innerHTML = "*";
+	}
+	if(document.getElementById("pass").value=="") {
+		document.getElementById("pasw").innerHTML = "*";
+	} 
+	else if(document.getElementById("pass").value.length < 6) {		
+			document.getElementById("pasw").innerHTML = "La password deve essere lunga almeno 6 caratteri";
+		}		
+	if(document.getElementById("email").value == "") {
+		document.getElementById("emo").innerHTML = "*";
+	}
 	else {
-		document.getElementById("emo").innerHTML = " ";
 		validamail();
-		};
-
+	};
 }
 
 function validamail()
 {
-	var atpos = document.getElementById("emai").value.indexOf("@");
-	console.log(atpos);
-	var dotpos = document.getElementById("emai").value.indexOf(".");
-	console.log(dotpos);
-	if(atpos <1 || dotpos < atpos+2 || dotpos+2 >= document.getElementById("emai").value.lenght )
-		{
-		console.log("Sono dentro");
+	var atpos = document.getElementById("email").value.indexOf("@");
+	var dotpos = document.getElementById("email").value.indexOf(".");
+	if((atpos <1) || (dotpos < atpos+2) || (dotpos+2 >= document.getElementById("email").value.lenght) ) {
 		document.getElementById("emo").innerHTML = "Email non valida";
-		}
-	else {
-		document.getElementById("emo").innerHTML = " ";
-		
-		};
+	}
 }
+
+
+
 </script>
+
+ -->
+ 
+ <script>
+	$(document).ready(function(){
+ 		$('#submit').prop("disabled",true);
+ 	});
+</script>
+
+<form name="reg">
+Nome: <input type="text" id="nome" name="nome" onkeyup ="ValidareNome(document.reg.nome)"> <a id="name"></a> </br>
+Cognome: <input type="text" id="cognome" onkeyup ="ValidareCognome(document.reg.cognome)"> <a id="surname"></a> </br>
+Indirizzo: <input type="text" id="indirizzo" onkeyup ="ValidareIndirizzo(document.reg.indirizzo)"> <a id="address"></a> </br>
+Email: <input type="text" id="email" name="email" onkeyup ="ValidareEmail(document.reg.email)"> <a id="emo"></a><a id="emo2"></a></br>
+Password: <input type="password" id="pass" onkeyup ="ValidarePassword(document.reg.pass)"> <a id="pasw"> </a> </br>
+
+
+<input type="submit" id="submit" value="Invia" onclick="">
 
 </form>
 </body>

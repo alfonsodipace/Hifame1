@@ -47,10 +47,10 @@ public class AjaxController extends HttpServlet {
 
 			if(email.equals(bn1.getEmail()))
 			{
-				out.println(""+email+" is already in use");
+				out.println(" already in use");
 			}
 			else{
-				out.println(""+email+" is avaiable");		
+				out.println(" avaiable");		
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
