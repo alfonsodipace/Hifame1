@@ -59,6 +59,7 @@ public class ProdottoBeanDao implements ProdottoBeanDaoInterface {
 		PreparedStatement preparedStatement = null;
 
 		String selectSQL = "DELETE FROM " + ProdottoBeanDao.TABLE_NAME + " WHERE nomeprodotto= ?";
+		
 		try {
 			preparedStatement = (PreparedStatement) connection.prepareStatement(selectSQL);
 			preparedStatement.setString(1, data.getNome());
