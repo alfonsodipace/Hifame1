@@ -12,7 +12,6 @@ public class UtenteBeanDao implements UtenteBeanDaoInterface {
 	
 	@Override
 	public void doSave(UtenteBean data) throws SQLException {
-		// TODO Auto-generated method stub
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 

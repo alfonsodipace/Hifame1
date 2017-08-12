@@ -9,6 +9,7 @@ public interface UtenteBeanDaoInterface {
 
 	public UtenteBean doRetrieveByKey(String email) throws SQLException;
 	
+	
 	public Collection<UtenteBean> doRetrieveAll(String order) throws SQLException;
 
 	
