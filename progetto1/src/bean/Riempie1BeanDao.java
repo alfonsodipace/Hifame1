@@ -38,7 +38,7 @@ public class Riempie1BeanDao implements Riempie1BeanDaoInterface {
 
 	@Override
 	public void doDelete(Riempie1Bean data) throws SQLException {
-		// TODO Auto-generated method stub
+	 
 		
 	}
 
