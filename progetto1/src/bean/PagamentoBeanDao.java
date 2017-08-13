@@ -6,29 +6,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
-public class UtenteBeanDao implements UtenteBeanDaoInterface {
-	
-	private static final String TABLE_NAME = "utente";
+public class PagamentoBeanDao implements PagamentoBeanDaoInterface {
+
+	private static final String TABLE_NAME = "pagamento";
 	
 	@Override
-	public void doSave(UtenteBean data) throws SQLException {
+	public void doSave(PagamentoBean data) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		String insertSQL = "INSERT INTO " + UtenteBeanDao.TABLE_NAME
-				+ " (email, pass, nome, cognome, indirizzo, tipo) VALUES (?, ?, ?, ?, ?, ?)";
+		String insertSQL = "INSERT INTO " + PagamentoBeanDao.TABLE_NAME+ " (idpagamento, idcarrello, dataacquisto) VALUES (?, ?, ?)";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = (PreparedStatement) connection.prepareStatement(insertSQL);
-			preparedStatement.setString(1, data.getEmail());
-			preparedStatement.setString(2, data.getPass());
-			preparedStatement.setString(3, data.getNome());
-			preparedStatement.setString(4, data.getCognome());
-			preparedStatement.setString(5, data.getIndirizzo());
-			preparedStatement.setString(6, data.getTipo());
+			preparedStatement.setInt(1, data.getIdPagamento());
+			preparedStatement.setInt(2, data.getIdCarrello());
+			preparedStatement.setString(3, data.getDataAcquisto());
 			preparedStatement.executeUpdate();
-
 			connection.commit();
 		} finally {
 			try {
@@ -37,33 +32,37 @@ public class UtenteBeanDao implements UtenteBeanDaoInterface {
 			} finally {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
-		}
+		}		
 	}
 
 	@Override
-	public UtenteBean doRetrieveByKey(String email) throws SQLException {
+	public void doDelete(PagamentoBean data) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public PagamentoBean doRetrieveByKey(String idpagamento) throws SQLException {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		UtenteBean bean = new UtenteBean();
+		PagamentoBean bean = new PagamentoBean();
 
-		String selectSQL = "SELECT * FROM " + UtenteBeanDao.TABLE_NAME + " WHERE email = ?";
+		String selectSQL = "SELECT * FROM " + PagamentoBeanDao.TABLE_NAME + " WHERE idacquisto = ?";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = (PreparedStatement) connection.prepareStatement(selectSQL);
-			preparedStatement.setString(1, email);
+			preparedStatement.setString(1, idpagamento);
 
 			ResultSet rs = (ResultSet) preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				bean.setEmail(rs.getString(1));
-				bean.setPass(rs.getString(2));
-				bean.setNome(rs.getString(3));
-				bean.setCognome(rs.getString(4));
-				bean.setIndirizzo(rs.getString(5));
-				bean.setTipo(rs.getString(6));
+				bean.setIdPagamento(rs.getInt(1));
+				bean.setIdCarrello(rs.getInt(2));
+				bean.setDataAcquisto(rs.getString(3));
 			}
+
 		} finally {
 			try {
 				if (preparedStatement != null)
@@ -76,11 +75,9 @@ public class UtenteBeanDao implements UtenteBeanDaoInterface {
 	}
 
 	@Override
-	public Collection<UtenteBean> doRetrieveAll(String order) throws SQLException {
+	public Collection<PagamentoBean> doRetrieveAll(String order) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 
 }
